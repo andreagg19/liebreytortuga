@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrera Liebre & Tortuga </title>
+</head>
+<body>
+    <script>
+        class Dado {
+            lanzar(){
+                return Math.floor(Math.random()*100)+1;
+            }
+        }
+        let midado = new Dado()
+
+        class Corredor{
+            constructor(numero){
+                this.numero = numero ;
+                this.posicion = 0;
+                this.dado = new Dado();
+            }
+
+            info(){
+                return this.numero + " esta en posicion "+ this.posicion;
+            }
+
+            corrert(){
+                let cara=this.dado.lanzar();
+                if (cara<=50){
+                    this.posicion+=3;
+                }
+                else if (cara<=70){
+                    this.posicion-=6
+                }
+                else if (cara<=100){
+                    this.posicion++;
+                }
+            }
+
+            correrl(){
+                let cara=this.dado.lanzar();
+                if (cara<=20){
+                    this.posicion+=9;
+                }
+                else if (cara<=30){
+                    this.posicion-=12;
+                }
+                else if (cara<=65){
+                    this.posicion++;
+                }
+                else if (cara<=80){
+                    this.posicion-= 2;
+                }
+            }
+            
+            }
+            let liebre = new Corredor("Liebre");
+            let tortuga = new Corredor("Tortuga");
+            while (liebre.posicion<100 && tortuga.posicion<100) {
+                liebre.correrl();
+                tortuga.corrert();
+                console.log(liebre.info()+" "+tortuga.info());
+                if (liebre.posicion >= 100 && tortuga.posicion >= 100){
+                    console.log("Empate");
+                } else if (liebre.posicion >= 100) {
+                    console.log("Ganador Liebre");
+                } else if (tortuga.posicion >= 100){
+                    console.log("Gandor Tortuga");
+        }
+            }
+    </script>
+</body>
+</html>
